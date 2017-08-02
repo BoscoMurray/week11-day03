@@ -16,17 +16,43 @@ var requestComplete = function() {
   populateList(beers);
 }
 
-var createLi = function(beer) {
-  var ul = document.querySelector('#beer-list');
-  var li = document.createElement('li');
-  li.innerText = beer.name;
+var createImg = function(imgUrl) {
+  var img = document.createElement("img");
+  img.width = 100;
+  img.src = imgUrl;
+  return img;
+}
+
+var createName = function(passedName) {
+  var name = document.createElement("p");
+  name.innerText = "Name: " + passedName;
+  return name;
+}
+
+var createImg = function(imgUrl) {
+  var img = document.createElement("img");
+  img.width = 100;
+  img.src = imgUrl;
+  return img;
+}
+
+var appendElements = function(name, img, li, ul) {
+  li.appendChild(name);
+  li.appendChild(img);
   ul.appendChild(li);
 }
 
+var createBeer = function(beer) {
+  var ul = document.querySelector('#beer-list');
+  var li = document.createElement('li');
+  var name = createName(beer.name);
+  var img = createImg(beer.image_url);
+  
+  appendElements(name, img, li, ul);
+}
+
 var populateList = function(beers) {
-  // var ul = document.querySelector('#beer-list');
-  console.log(beers);
-  beers.forEach(createLi);
+  beers.forEach(createBeer);
 }
 
 var app = function () {
